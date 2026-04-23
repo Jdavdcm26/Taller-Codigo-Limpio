@@ -9,7 +9,7 @@ package com.mycompany.restauranteelbuensabor;
  * @author alfre
  */
 public class Utilidades {
-    public static double calcular(double precio, double cantidad, double descuento, double iva, double porcentajePropina, int numeroItems, boolean aplicarPropina) {
+    public static double calcularMontoConIVA(double precio, double cantidad, double descuento, double iva, double porcentajePropina, int numeroItems, boolean aplicarPropina) {
         double resultado = 0;
         double ivaCalculado = 0;
         double montoTemporal = 0;
