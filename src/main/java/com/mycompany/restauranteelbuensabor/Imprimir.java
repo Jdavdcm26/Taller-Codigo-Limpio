@@ -29,28 +29,9 @@ public class Imprimir {
         System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotal);
     }
 
-    public static void imprimirFacturaCompleta() {
-        double subtotal = Utilidades.calcularSubtotalPedido();
-        int contadorItems = Utilidades.contarItemsPedido();
-        double montoIVA = 0;
-        double total = 0;
-        double propina = 0;
-        double subtotalConDescuento = 0;
-        if (contadorItems > Constantes.MIN_ITEMS_DESCUENTO) {
-            subtotalConDescuento = subtotal - (subtotal * Constantes.TASA_DESCUENTO);
-        } else {
-            subtotalConDescuento = subtotal;
-        }
-        if (subtotalConDescuento > Constantes.UMBRAL_PROPINA) {
-            montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
-            total = subtotalConDescuento + montoIVA;
-            propina = total * Constantes.TASA_PROPINA;
-            total = total + propina;
-        } else {
-            montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
-            total = subtotalConDescuento + montoIVA;
-            propina = 0;
-        }
+public static void imprimirFacturaCompleta() {
+        double[] calculo = calcularYImprimirTotales("completa");
+        double total = calculo[2];
         System.out.println(Constantes.SEPARADOR);
         System.out.println("    " + Constantes.NOMBRE_RESTAURANTE);
         System.out.println("    " + Constantes.DIRECCION);
@@ -66,10 +47,10 @@ public class Imprimir {
             indiceProductos++;
         }
         System.out.println(Constantes.SEPARADOR_ITEM);
-        System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotalConDescuento);
-        System.out.printf("%-27s $%,.0f%n", "IVA (19%):", montoIVA);
-        if (propina > 0) {
-            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", propina);
+        System.out.printf("%-27s $%,.0f%n", "Subtotal:", calculo[0]);
+        System.out.printf("%-27s $%,.0f%n", "IVA (19%):", calculo[1]);
+        if (calculo[3] > 0) {
+            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", calculo[3]);
         }
         System.out.println(Constantes.SEPARADOR_ITEM);
         System.out.printf("%-27s $%,.0f%n", "TOTAL:", total);
@@ -83,6 +64,27 @@ public class Imprimir {
     }
 
     public static void imprimirFacturaResumen() {
+        double[] calculo = calcularYImprimirTotales("resumen");
+        double total = calculo[2];
+        System.out.println(Constantes.SEPARADOR);
+        System.out.println("    " + Constantes.NOMBRE_RESTAURANTE);
+        System.out.println("    " + Constantes.DIRECCION);
+        System.out.println("    NIT: " + Constantes.NIT);
+        System.out.println(Constantes.SEPARADOR);
+        System.out.printf("FACTURA No. %03d (RESUMEN)%n", Datos.numeroFactura);
+        System.out.println(Constantes.SEPARADOR_ITEM);
+        System.out.printf("%-27s $%,.0f%n", "Subtotal:", calculo[0]);
+        System.out.printf("%-27s $%,.0f%n", "IVA (19%):", calculo[1]);
+        if (calculo[3] > 0) {
+            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", calculo[3]);
+        }
+        System.out.println(Constantes.SEPARADOR_ITEM);
+        System.out.printf("%-27s $%,.0f%n", "TOTAL:", total);
+        System.out.println(Constantes.SEPARADOR);
+        Datos.totalActual = total;
+    }
+
+    public static double[] calcularYImprimirTotales(String tipoFactura) {
         double subtotal = Utilidades.calcularSubtotalPedido();
         int contadorItems = Utilidades.contarItemsPedido();
         double montoIVA = 0;
@@ -104,20 +106,6 @@ public class Imprimir {
             total = subtotalConDescuento + montoIVA;
             propina = 0;
         }
-        System.out.println(Constantes.SEPARADOR);
-        System.out.println("    " + Constantes.NOMBRE_RESTAURANTE);
-        System.out.println("    " + Constantes.DIRECCION);
-        System.out.println("    NIT: " + Constantes.NIT);
-        System.out.println(Constantes.SEPARADOR);
-        System.out.printf("FACTURA No. %03d (RESUMEN)%n", Datos.numeroFactura);
-        System.out.println(Constantes.SEPARADOR_ITEM);
-        System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotalConDescuento);
-        System.out.printf("%-27s $%,.0f%n", "IVA (19%):", montoIVA);
-        if (propina > 0) {
-            System.out.printf("%-27s $%,.0f%n", "Propina (10%):", propina);
-        }
-        System.out.println(Constantes.SEPARADOR_ITEM);
-        System.out.printf("%-27s $%,.0f%n", "TOTAL:", total);
-        System.out.println(Constantes.SEPARADOR);
+        return new double[]{subtotalConDescuento, montoIVA, total, propina};
     }
 }
