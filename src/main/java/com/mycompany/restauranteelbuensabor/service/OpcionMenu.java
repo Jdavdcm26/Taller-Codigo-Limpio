@@ -1,4 +1,4 @@
-package com.mycompany.restauranteelbuensabor.controller;
+package com.mycompany.restauranteelbuensabor.service;
 
 public enum OpcionMenu {
     VER_CARTA(1),

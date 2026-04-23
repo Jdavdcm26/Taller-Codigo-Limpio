@@ -1,4 +1,4 @@
-package com.mycompany.restauranteelbuensabor.controller;
+package com.mycompany.restauranteelbuensabor.service;
 
 import java.util.Scanner;
 

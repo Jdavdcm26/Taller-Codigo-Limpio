@@ -1,4 +1,4 @@
-package com.mycompany.restauranteelbuensabor.controller;
+package com.mycompany.restauranteelbuensabor.service;
 
 import com.mycompany.restauranteelbuensabor.model.Pedido;
 import java.util.concurrent.atomic.AtomicInteger;

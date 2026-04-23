@@ -3,7 +3,7 @@ package com.mycompany.restauranteelbuensabor.view;
 import com.mycompany.restauranteelbuensabor.config.Constantes;
 import com.mycompany.restauranteelbuensabor.model.ItemPedido;
 import com.mycompany.restauranteelbuensabor.model.Pedido;
-import com.mycompany.restauranteelbuensabor.controller.Factura;
+import com.mycompany.restauranteelbuensabor.service.Factura;
 
 /**
  * Implementación de IImpresora para consola.
