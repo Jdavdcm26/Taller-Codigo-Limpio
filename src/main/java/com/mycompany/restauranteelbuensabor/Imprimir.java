@@ -1,25 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.restauranteelbuensabor;
 
-/**
- *
- * @author alfre
- */
 public class Imprimir {
     public static void mostrarCarta() {
-        System.out.println("========================================");
-        System.out.println("    RESTAURANTE EL BUEN SABOR");
+        System.out.println(Constantes.SEPARADOR);
+        System.out.println("    " + Constantes.NOMBRE_RESTAURANTE);
         System.out.println("    --- NUESTRA CARTA ---");
-        System.out.println("========================================");
+        System.out.println(Constantes.SEPARADOR);
         int indice = 0;
         while (indice < Datos.nombresProductos.length) {
             System.out.printf("%d. %-22s $%,.0f%n", (indice + 1), Datos.nombresProductos[indice], Datos.precios[indice]);
             indice++;
         }
-        System.out.println("========================================");
+        System.out.println(Constantes.SEPARADOR);
     }
 
     public static void mostrarPedido() {
@@ -52,29 +44,28 @@ public class Imprimir {
             }
             indice++;
         }
-        if (contadorItems > 3) {
-            subtotalConDescuento = subtotal - (subtotal * 0.05);
+        if (contadorItems > Constantes.MIN_ITEMS_DESCUENTO) {
+            subtotalConDescuento = subtotal - (subtotal * Constantes.TASA_DESCUENTO);
         } else {
             subtotalConDescuento = subtotal;
         }
-        if (subtotalConDescuento > 50000) {
-            montoIVA = subtotalConDescuento * 0.19;
+        if (subtotalConDescuento > Constantes.UMBRAL_PROPINA) {
+            montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
             total = subtotalConDescuento + montoIVA;
-            propina = total * 0.10;
+            propina = total * Constantes.TASA_PROPINA;
             total = total + propina;
         } else {
-            montoIVA = subtotalConDescuento * 0.19;
+            montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
             total = subtotalConDescuento + montoIVA;
             propina = 0;
         }
-        String separador = "========================================";
-        System.out.println(separador);
-        System.out.println("    RESTAURANTE EL BUEN SABOR");
-        System.out.println("    Calle 15 #8-32, Valledupar");
-        System.out.println("    NIT: 900.123.456-7");
-        System.out.println(separador);
+        System.out.println(Constantes.SEPARADOR);
+        System.out.println("    " + Constantes.NOMBRE_RESTAURANTE);
+        System.out.println("    " + Constantes.DIRECCION);
+        System.out.println("    NIT: " + Constantes.NIT);
+        System.out.println(Constantes.SEPARADOR);
         System.out.printf("FACTURA No. %03d%n", Datos.numeroFactura);
-        System.out.println("----------------------------------------");
+        System.out.println(Constantes.SEPARADOR_ITEM);
         int indiceProductos = 0;
         while (indiceProductos < Datos.nombresProductos.length) {
             if (Datos.cantidadesProductos[indiceProductos] > 0) {
@@ -82,18 +73,18 @@ public class Imprimir {
             }
             indiceProductos++;
         }
-        System.out.println("----------------------------------------");
+        System.out.println(Constantes.SEPARADOR_ITEM);
         System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotalConDescuento);
         System.out.printf("%-27s $%,.0f%n", "IVA (19%):", montoIVA);
         if (propina > 0) {
             System.out.printf("%-27s $%,.0f%n", "Propina (10%):", propina);
         }
-        System.out.println("----------------------------------------");
+        System.out.println(Constantes.SEPARADOR_ITEM);
         System.out.printf("%-27s $%,.0f%n", "TOTAL:", total);
-        System.out.println(separador);
+        System.out.println(Constantes.SEPARADOR);
         System.out.println("Gracias por su visita!");
-        System.out.println("El Buen Sabor - Valledupar");
-        System.out.println(separador);
+        System.out.println(Constantes.NOMBRE_RESTAURANTE + " - " + Constantes.DIRECCION.split(",")[0]);
+        System.out.println(Constantes.SEPARADOR);
         Datos.numeroFactura = Datos.numeroFactura + 1;
         Datos.estadoMesa = 0;
         Datos.totalActual = total;
@@ -114,36 +105,35 @@ public class Imprimir {
             }
             indice++;
         }
-        if (contadorItems > 3) {
-            subtotalConDescuento = subtotal - (subtotal * 0.05);
+        if (contadorItems > Constantes.MIN_ITEMS_DESCUENTO) {
+            subtotalConDescuento = subtotal - (subtotal * Constantes.TASA_DESCUENTO);
         } else {
             subtotalConDescuento = subtotal;
         }
-        if (subtotalConDescuento > 50000) {
-            montoIVA = subtotalConDescuento * 0.19;
+        if (subtotalConDescuento > Constantes.UMBRAL_PROPINA) {
+            montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
             total = subtotalConDescuento + montoIVA;
-            propina = total * 0.10;
+            propina = total * Constantes.TASA_PROPINA;
             total = total + propina;
         } else {
-            montoIVA = subtotalConDescuento * 0.19;
+            montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
             total = subtotalConDescuento + montoIVA;
             propina = 0;
         }
-        String separador = "========================================";
-        System.out.println(separador);
-        System.out.println("    RESTAURANTE EL BUEN SABOR");
-        System.out.println("    Calle 15 #8-32, Valledupar");
-        System.out.println("    NIT: 900.123.456-7");
-        System.out.println(separador);
+        System.out.println(Constantes.SEPARADOR);
+        System.out.println("    " + Constantes.NOMBRE_RESTAURANTE);
+        System.out.println("    " + Constantes.DIRECCION);
+        System.out.println("    NIT: " + Constantes.NIT);
+        System.out.println(Constantes.SEPARADOR);
         System.out.printf("FACTURA No. %03d (RESUMEN)%n", Datos.numeroFactura);
-        System.out.println("----------------------------------------");
+        System.out.println(Constantes.SEPARADOR_ITEM);
         System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotalConDescuento);
         System.out.printf("%-27s $%,.0f%n", "IVA (19%):", montoIVA);
         if (propina > 0) {
             System.out.printf("%-27s $%,.0f%n", "Propina (10%):", propina);
         }
-        System.out.println("----------------------------------------");
+        System.out.println(Constantes.SEPARADOR_ITEM);
         System.out.printf("%-27s $%,.0f%n", "TOTAL:", total);
-        System.out.println(separador);
+        System.out.println(Constantes.SEPARADOR);
     }
 }

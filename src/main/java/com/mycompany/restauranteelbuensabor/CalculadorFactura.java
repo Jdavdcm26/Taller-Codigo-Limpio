@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.restauranteelbuensabor;
 
-/**
- *
- * @author alfre
- */
 public class CalculadorFactura {
     public static double calcularTotalFactura() {
         double subtotal = 0;
@@ -23,25 +15,25 @@ public class CalculadorFactura {
             }
             indice++;
         }
-        if (contadorItems > 3) {
+        if (contadorItems > Constantes.MIN_ITEMS_DESCUENTO) {
             if (subtotal > 0) {
-                subtotalConDescuento = subtotal - (subtotal * 0.05);
-                if (subtotalConDescuento > 50000) {
-                    montoIVA = subtotalConDescuento * 0.19;
+                subtotalConDescuento = subtotal - (subtotal * Constantes.TASA_DESCUENTO);
+                if (subtotalConDescuento > Constantes.UMBRAL_PROPINA) {
+                    montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
                     total = subtotalConDescuento + montoIVA;
-                    total = total + (total * 0.10);
+                    total = total + (total * Constantes.TASA_PROPINA);
                 } else {
-                    montoIVA = subtotalConDescuento * 0.19;
+                    montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
                     total = subtotalConDescuento + montoIVA;
                 }
             }
         } else {
-            if (subtotal > 50000) {
-                montoIVA = subtotal * 0.19;
+            if (subtotal > Constantes.UMBRAL_PROPINA) {
+                montoIVA = subtotal * Constantes.TASA_IVA;
                 total = subtotal + montoIVA;
-                total = total + (total * 0.10);
+                total = total + (total * Constantes.TASA_PROPINA);
             } else {
-                montoIVA = subtotal * 0.19;
+                montoIVA = subtotal * Constantes.TASA_IVA;
                 total = subtotal + montoIVA;
             }
         }
@@ -53,7 +45,6 @@ public class CalculadorFactura {
     public static double procesar(double precio, double cantidad, double descuento, double iva, double porcentajePropina, int numeroItems, boolean aplicarPropina) {
         double resultado = 0;
         double montoIVA = 0;
-        double propina = 0;
         double montoTemporal = 0;
         resultado = precio * cantidad;
         if (descuento > 0) {
@@ -66,7 +57,7 @@ public class CalculadorFactura {
             cantidad = resultado * porcentajePropina;
             resultado = resultado + cantidad;
         }
-        if (numeroItems > 3) {
+        if (numeroItems > Constantes.MIN_ITEMS_DESCUENTO) {
             resultado = resultado - (resultado * 0.01);
         }
         return resultado;
