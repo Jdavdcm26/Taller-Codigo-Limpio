@@ -7,16 +7,15 @@ public class Imprimir {
         carta.mostrarCarta();
     }
 
-    public static void mostrarPedido() {
+    public static void mostrarPedido(Pedido pedido) {
         double subtotal = 0;
-        int indice = 0;
         System.out.println("--- PEDIDO ACTUAL ---");
-        while (indice < Datos.nombresProductos.length) {
-            if (Datos.cantidadesProductos[indice] > 0) {
-                System.out.printf("%-20s x%-6d $%,.0f%n", Datos.nombresProductos[indice], Datos.cantidadesProductos[indice], (Datos.precios[indice] * Datos.cantidadesProductos[indice]));
-                subtotal = subtotal + Datos.precios[indice] * Datos.cantidadesProductos[indice];
-            }
-            indice++;
+        for (ItemPedido item : pedido.getItems()) {
+            System.out.printf("%-20s x%-6d $%,.0f%n",
+                item.getProducto().getNombre(),
+                item.getCantidad(),
+                item.getSubtotal());
+            subtotal += item.getSubtotal();
         }
         System.out.println("--------------------");
         System.out.printf("%-27s $%,.0f%n", "Subtotal:", subtotal);

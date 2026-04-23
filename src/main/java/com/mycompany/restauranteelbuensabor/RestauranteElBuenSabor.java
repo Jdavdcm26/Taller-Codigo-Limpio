@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class RestauranteElBuenSabor {
     private static final CartaRestaurante carta = new CartaRestaurante();
+    private static final Pedido pedido = new Pedido();
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -49,17 +50,20 @@ public class RestauranteElBuenSabor {
                                 Datos.estadoMesa = 1;
                                 mesaTemporal = Datos.numeroMesaActual;
                                 contadorIntentos = mesaTemporal + 1;
+                                pedido.setNumeroMesa(Datos.numeroMesaActual);
                             } else {
                                 Datos.numeroMesaActual = 1;
                                 Datos.estadoMesa = 1;
                                 mesaTemporal = 1;
                                 contadorIntentos = 2;
+                                pedido.setNumeroMesa(1);
                             }
                         }
-                        Datos.cantidadesProductos[numeroProducto - 1] = Datos.cantidadesProductos[numeroProducto - 1] + cantidad;
+                        Producto producto = carta.getProducto(numeroProducto);
+                        pedido.agregarProducto(producto, cantidad);
                         System.out.println("Producto agregado al pedido.");
-                        System.out.println("  -> " + carta.getProducto(numeroProducto).getNombre() + " x" + cantidad);
-                        montoPedido = carta.getProducto(numeroProducto).getPrecio() * cantidad;
+                        System.out.println("  -> " + producto.getNombre() + " x" + cantidad);
+                        montoPedido = producto.getPrecio() * cantidad;
                     } else {
                         if (cantidad == 0) {
                             System.out.println("La cantidad no puede ser cero.");
@@ -77,8 +81,8 @@ public class RestauranteElBuenSabor {
                 System.out.println();
             } else if (opcionMenu == 3) {
                 System.out.println();
-                if (Utilidades.hayProductosEnPedido()) {
-                    Imprimir.mostrarPedido();
+                if (pedido.hayProductos()) {
+                    Imprimir.mostrarPedido(pedido);
                 } else {
                     System.out.println("No hay productos en el pedido actual.");
                     System.out.println("Use la opcion 2 para agregar productos.");
@@ -86,7 +90,7 @@ public class RestauranteElBuenSabor {
                 System.out.println();
             } else if (opcionMenu == 4) {
                 System.out.println();
-                if (Utilidades.hayProductosEnPedido()) {
+                if (pedido.hayProductos()) {
                     double r = CalculadorFactura.calcularTotalFactura();
                     mesaTemporal = (int) r;
                     montoPedido = r;
@@ -101,7 +105,7 @@ public class RestauranteElBuenSabor {
                 }
             } else if (opcionMenu == 5) {
                 System.out.println();
-                Utilidades.reiniciarPedido();
+                pedido.reiniciar();
                 contadorIntentos = 0;
                 mesaTemporal = 0;
                 montoPedido = 0;
