@@ -3,6 +3,8 @@ com\mycompany\restauranteelbuensabor\domain\model\Pedido.class
 com\mycompany\restauranteelbuensabor\presentation\MenuHandler$1.class
 com\mycompany\restauranteelbuensabor\service\ServicioFacturacion.class
 com\mycompany\restauranteelbuensabor\config\Constantes.class
+com\mycompany\restauranteelbuensabor\infrastructure\IImpresora.class
+com\mycompany\restauranteelbuensabor\infrastructure\ImpresoraConsola.class
 com\mycompany\restauranteelbuensabor\infrastructure\CartaRestaurante.class
 com\mycompany\restauranteelbuensabor\presentation\MenuHandler.class
 com\mycompany\restauranteelbuensabor\infrastructure\Imprimir.class
@@ -11,4 +13,6 @@ com\mycompany\restauranteelbuensabor\presentation\RestauranteElBuenSabor.class
 com\mycompany\restauranteelbuensabor\service\Factura.class
 com\mycompany\restauranteelbuensabor\presentation\SistemaRestaurante.class
 com\mycompany\restauranteelbuensabor\domain\model\Producto.class
+com\mycompany\restauranteelbuensabor\service\FacturacionService.class
+com\mycompany\restauranteelbuensabor\service\IFacturacionService.class
 com\mycompany\restauranteelbuensabor\presentation\OpcionMenu.class

@@ -3,16 +3,23 @@ package com.mycompany.restauranteelbuensabor.presentation;
 import com.mycompany.restauranteelbuensabor.domain.model.Mesa;
 import com.mycompany.restauranteelbuensabor.domain.model.Producto;
 import com.mycompany.restauranteelbuensabor.infrastructure.CartaRestaurante;
-import com.mycompany.restauranteelbuensabor.infrastructure.Imprimir;
+import com.mycompany.restauranteelbuensabor.infrastructure.IImpresora;
+import com.mycompany.restauranteelbuensabor.infrastructure.ImpresoraConsola;
 import com.mycompany.restauranteelbuensabor.service.Factura;
 
 public class SistemaRestaurante {
     private final CartaRestaurante carta;
     private final Mesa mesa;
+    private final IImpresora impresora;
 
     public SistemaRestaurante() {
+        this(new ImpresoraConsola());
+    }
+
+    public SistemaRestaurante(IImpresora impresora) {
         this.carta = new CartaRestaurante();
         this.mesa = new Mesa();
+        this.impresora = impresora;
     }
 
     public void ocuparMesa(int numeroMesa) {
@@ -30,7 +37,7 @@ public class SistemaRestaurante {
 
     public void mostrarPedido() {
         if (mesa.getPedido().tieneProductos()) {
-            Imprimir.mostrarPedido(mesa.getPedido());
+            impresora.mostrarPedido(mesa.getPedido());
         } else {
             System.out.println("No hay productos en el pedido actual.");
             System.out.println("Use la opcion 2 para agregar productos.");
@@ -45,7 +52,7 @@ public class SistemaRestaurante {
             return;
         }
         Factura factura = new Factura(mesa.getPedido());
-        Imprimir.imprimirFactura(factura);
+        impresora.imprimirFactura(factura);
     }
 
     public void nuevaMesa() {

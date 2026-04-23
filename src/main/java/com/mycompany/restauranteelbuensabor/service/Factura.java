@@ -1,9 +1,9 @@
 package com.mycompany.restauranteelbuensabor.service;
 
-import com.mycompany.restauranteelbuensabor.config.Constantes;
 import com.mycompany.restauranteelbuensabor.domain.model.Pedido;
 
 public class Factura {
+    private static final IFacturacionService SERVICIO = new FacturacionService();
     private static int secuencial = 1;
 
     private final int numeroFactura;
@@ -21,17 +21,18 @@ public class Factura {
         double base = pedido.getSubtotal();
         int cantidadItems = pedido.getCantidadItems();
 
-        if (ServicioFacturacion.aplicaDescuento(cantidadItems)) {
-            this.descuento = base * Constantes.TASA_DESCUENTO;
+        boolean aplicarDescuento = SERVICIO.aplicaDescuento(cantidadItems);
+        if (aplicarDescuento) {
+            this.descuento = base * 0.05;
             base = base - this.descuento;
         } else {
             this.descuento = 0;
         }
 
         this.subtotal = base;
-        this.montoIVA = ServicioFacturacion.calcularIVA(base);
+        this.montoIVA = SERVICIO.calcularIVA(base);
         double totalConIVA = base + this.montoIVA;
-        this.montoPropina = ServicioFacturacion.calcularPropina(totalConIVA, base);
+        this.montoPropina = SERVICIO.calcularPropina(totalConIVA, base);
         this.total = totalConIVA + this.montoPropina;
     }
 
