@@ -1,4 +1,5 @@
-package com.mycompany.restauranteelbuensabor.service;
+package com.mycompany.restauranteelbuensabor;
+import com.mycompany.restauranteelbuensabor.service.*;
 
 import java.util.Scanner;
 
