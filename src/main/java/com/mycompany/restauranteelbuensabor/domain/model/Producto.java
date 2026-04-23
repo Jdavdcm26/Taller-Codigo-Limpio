@@ -1,5 +1,8 @@
 package com.mycompany.restauranteelbuensabor.domain.model;
 
+/**
+ * Representa un producto del menú del restaurante.
+ */
 public class Producto {
     private final String nombre;
     private final double precio;

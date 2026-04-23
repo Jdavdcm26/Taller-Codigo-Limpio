@@ -1,10 +1,14 @@
 package com.mycompany.restauranteelbuensabor.service;
 
 import com.mycompany.restauranteelbuensabor.domain.model.Pedido;
+import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Representa una factura del restaurante.
+ */
 public class Factura {
     private static final IFacturacionService SERVICIO = new FacturacionService();
-    private static int secuencial = 1;
+    private static final AtomicInteger SECUENCIAL = new AtomicInteger(1);
 
     private final int numeroFactura;
     private final Pedido pedido;
@@ -16,7 +20,7 @@ public class Factura {
 
     public Factura(Pedido pedido) {
         this.pedido = pedido;
-        this.numeroFactura = secuencial++;
+        this.numeroFactura = SECUENCIAL.getAndIncrement();
 
         double base = pedido.getSubtotal();
         int cantidadItems = pedido.getCantidadItems();

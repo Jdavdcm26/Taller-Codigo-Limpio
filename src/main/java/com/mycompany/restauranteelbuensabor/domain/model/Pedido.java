@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Representa un pedido de una mesa.
+ */
 public class Pedido {
     private final List<ItemPedido> items;
     private int numeroMesa;

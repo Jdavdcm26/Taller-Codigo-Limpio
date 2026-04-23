@@ -1,5 +1,8 @@
 package com.mycompany.restauranteelbuensabor.domain.model;
 
+/**
+ * Representa un ítem (producto + cantidad) en un pedido.
+ */
 public class ItemPedido {
     private final Producto producto;
     private int cantidad;
