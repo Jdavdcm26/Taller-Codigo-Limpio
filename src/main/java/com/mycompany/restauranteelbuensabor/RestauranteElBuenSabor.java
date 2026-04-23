@@ -91,11 +91,15 @@ public class RestauranteElBuenSabor {
             } else if (opcionMenu == 4) {
                 System.out.println();
                 if (pedido.hayProductos()) {
-                    double r = CalculadorFactura.calcularTotalFactura();
-                    mesaTemporal = (int) r;
-                    montoPedido = r;
-                    Imprimir.imprimirFacturaCompleta();
+                    Factura factura = new Factura(pedido);
+                    Imprimir.imprimirFactura(factura);
+                    montoPedido = factura.getTotal();
                     System.out.println();
+                    System.out.println("Mesa reiniciada. Lista para nuevo cliente.");
+                    System.out.println();
+                    pedido.reiniciar();
+                    mesaTemporal = 0;
+                    montoPedido = 0;
                 } else {
                     System.out.println("No se puede generar factura.");
                     System.out.println("No hay productos en el pedido.");
