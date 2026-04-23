@@ -30,20 +30,12 @@ public class Imprimir {
     }
 
     public static void imprimirFacturaCompleta() {
-        double subtotal = 0;
+        double subtotal = Utilidades.calcularSubtotalPedido();
+        int contadorItems = Utilidades.contarItemsPedido();
         double montoIVA = 0;
         double total = 0;
         double propina = 0;
-        int contadorItems = 0;
         double subtotalConDescuento = 0;
-        int indice = 0;
-        while (indice < Datos.nombresProductos.length) {
-            if (Datos.cantidadesProductos[indice] > 0) {
-                subtotal = subtotal + Datos.precios[indice] * Datos.cantidadesProductos[indice];
-                contadorItems = contadorItems + 1;
-            }
-            indice++;
-        }
         if (contadorItems > Constantes.MIN_ITEMS_DESCUENTO) {
             subtotalConDescuento = subtotal - (subtotal * Constantes.TASA_DESCUENTO);
         } else {
@@ -91,20 +83,12 @@ public class Imprimir {
     }
 
     public static void imprimirFacturaResumen() {
-        double subtotal = 0;
+        double subtotal = Utilidades.calcularSubtotalPedido();
+        int contadorItems = Utilidades.contarItemsPedido();
         double montoIVA = 0;
         double total = 0;
         double propina = 0;
-        int contadorItems = 0;
         double subtotalConDescuento = 0;
-        int indice = 0;
-        while (indice < Datos.nombresProductos.length) {
-            if (Datos.cantidadesProductos[indice] > 0) {
-                subtotal = subtotal + Datos.precios[indice] * Datos.cantidadesProductos[indice];
-                contadorItems = contadorItems + 1;
-            }
-            indice++;
-        }
         if (contadorItems > Constantes.MIN_ITEMS_DESCUENTO) {
             subtotalConDescuento = subtotal - (subtotal * Constantes.TASA_DESCUENTO);
         } else {

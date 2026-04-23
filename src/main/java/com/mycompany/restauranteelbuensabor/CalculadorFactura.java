@@ -2,19 +2,11 @@ package com.mycompany.restauranteelbuensabor;
 
 public class CalculadorFactura {
     public static double calcularTotalFactura() {
-        double subtotal = 0;
+        double subtotal = Utilidades.calcularSubtotalPedido();
+        int contadorItems = Utilidades.contarItemsPedido();
         double montoIVA = 0;
         double total = 0;
         double subtotalConDescuento = 0;
-        int contadorItems = 0;
-        int indice = 0;
-        while (indice < Datos.nombresProductos.length) {
-            if (Datos.cantidadesProductos[indice] > 0) {
-                subtotal = subtotal + Datos.precios[indice] * Datos.cantidadesProductos[indice];
-                contadorItems = contadorItems + 1;
-            }
-            indice++;
-        }
         if (contadorItems > Constantes.MIN_ITEMS_DESCUENTO) {
             if (subtotal > 0) {
                 subtotalConDescuento = subtotal - (subtotal * Constantes.TASA_DESCUENTO);
