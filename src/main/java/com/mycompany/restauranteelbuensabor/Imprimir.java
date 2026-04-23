@@ -1,17 +1,10 @@
 package com.mycompany.restauranteelbuensabor;
 
 public class Imprimir {
+    private static final CartaRestaurante carta = new CartaRestaurante();
+
     public static void mostrarCarta() {
-        System.out.println(Constantes.SEPARADOR);
-        System.out.println("    " + Constantes.NOMBRE_RESTAURANTE);
-        System.out.println("    --- NUESTRA CARTA ---");
-        System.out.println(Constantes.SEPARADOR);
-        int indice = 0;
-        while (indice < Datos.nombresProductos.length) {
-            System.out.printf("%d. %-22s $%,.0f%n", (indice + 1), Datos.nombresProductos[indice], Datos.precios[indice]);
-            indice++;
-        }
-        System.out.println(Constantes.SEPARADOR);
+        carta.mostrarCarta();
     }
 
     public static void mostrarPedido() {
