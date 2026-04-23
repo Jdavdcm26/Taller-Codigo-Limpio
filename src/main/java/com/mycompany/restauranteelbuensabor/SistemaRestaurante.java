@@ -23,7 +23,7 @@ public class SistemaRestaurante {
     }
 
     public void mostrarPedido() {
-        if (mesa.getPedido().hayProductos()) {
+        if (mesa.getPedido().tieneProductos()) {
             Imprimir.mostrarPedido(mesa.getPedido());
         } else {
             System.out.println("No hay productos en el pedido actual.");
@@ -32,7 +32,7 @@ public class SistemaRestaurante {
     }
 
     public void generarFactura() {
-        if (!mesa.getPedido().hayProductos()) {
+        if (!mesa.getPedido().tieneProductos()) {
             System.out.println("No se puede generar factura.");
             System.out.println("No hay productos en el pedido.");
             System.out.println("Use la opcion 2 para agregar productos primero.");
@@ -46,8 +46,8 @@ public class SistemaRestaurante {
         mesa.liberar();
     }
 
-    public boolean isMesaOcupada() {
-        return mesa.isOcupada();
+    public boolean mesaEstaOcupada() {
+        return mesa.estaOcupada();
     }
 
     public Mesa getMesa() {

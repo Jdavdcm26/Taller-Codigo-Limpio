@@ -1,6 +1,7 @@
 package com.mycompany.restauranteelbuensabor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Pedido {
@@ -16,29 +17,10 @@ public class Pedido {
         for (ItemPedido item : items) {
             if (item.getProducto() == producto) {
                 item.agregarCantidad(cantidad);
-                sincronizarConLegacy(producto, item.getCantidad());
                 return;
             }
         }
         items.add(new ItemPedido(producto, cantidad));
-        sincronizarConLegacy(producto, cantidad);
-    }
-
-    private void sincronizarConLegacy(Producto producto, int cantidad) {
-        int indice = encontrarIndiceProducto(producto);
-        if (indice >= 0) {
-            Datos.cantidadesProductos[indice] = cantidad;
-        }
-    }
-
-    private int encontrarIndiceProducto(Producto producto) {
-        CartaRestaurante carta = new CartaRestaurante();
-        for (int i = 0; i < carta.getCantidadProductos(); i++) {
-            if (carta.getProducto(i + 1) == producto) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public double getSubtotal() {
@@ -53,23 +35,13 @@ public class Pedido {
         return items.size();
     }
 
-    public boolean hayProductos() {
+    public boolean tieneProductos() {
         return !items.isEmpty();
     }
 
     public void reiniciar() {
         items.clear();
         numeroMesa = 0;
-        limpiarLegacy();
-    }
-
-    private void limpiarLegacy() {
-        for (int i = 0; i < Datos.cantidadesProductos.length; i++) {
-            Datos.cantidadesProductos[i] = 0;
-        }
-        Datos.totalActual = 0;
-        Datos.estadoMesa = 0;
-        Datos.numeroMesaActual = 0;
     }
 
     public int getNumeroMesa() {
@@ -81,6 +53,6 @@ public class Pedido {
     }
 
     public List<ItemPedido> getItems() {
-        return items;
+        return Collections.unmodifiableList(items);
     }
 }

@@ -22,7 +22,7 @@ public class Mesa {
         this.pedido.reiniciar();
     }
 
-    public boolean isOcupada() {
+    public boolean estaOcupada() {
         return ocupada;
     }
 

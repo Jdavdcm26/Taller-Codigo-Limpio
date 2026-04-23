@@ -39,7 +39,7 @@ public class RestauranteElBuenSabor {
 
                 if (numeroProducto > 0 && numeroProducto <= sistema.getCarta().getCantidadProductos()) {
                     if (cantidad > 0) {
-                        if (!sistema.isMesaOcupada()) {
+                        if (!sistema.mesaEstaOcupada()) {
                             System.out.print("Ingrese numero de mesa: ");
                             int numeroMesa = scanner.nextInt();
                             sistema.ocuparMesa(numeroMesa);
