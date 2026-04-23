@@ -1,4 +1,4 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.config;
 
 public class Constantes {
     public static final double TASA_IVA = 0.19;

@@ -1,4 +1,4 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.domain.model;
 
 public class ItemPedido {
     private final Producto producto;

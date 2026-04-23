@@ -1,4 +1,4 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.domain.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

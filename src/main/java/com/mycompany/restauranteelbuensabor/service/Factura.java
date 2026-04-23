@@ -1,4 +1,7 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.service;
+
+import com.mycompany.restauranteelbuensabor.config.Constantes;
+import com.mycompany.restauranteelbuensabor.domain.model.Pedido;
 
 public class Factura {
     private static int secuencial = 1;

@@ -1,4 +1,10 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.presentation;
+
+import com.mycompany.restauranteelbuensabor.domain.model.Mesa;
+import com.mycompany.restauranteelbuensabor.domain.model.Producto;
+import com.mycompany.restauranteelbuensabor.infrastructure.CartaRestaurante;
+import com.mycompany.restauranteelbuensabor.infrastructure.Imprimir;
+import com.mycompany.restauranteelbuensabor.service.Factura;
 
 public class SistemaRestaurante {
     private final CartaRestaurante carta;

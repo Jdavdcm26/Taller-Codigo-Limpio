@@ -1,4 +1,6 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.service;
+
+import com.mycompany.restauranteelbuensabor.config.Constantes;
 
 public class ServicioFacturacion {
 

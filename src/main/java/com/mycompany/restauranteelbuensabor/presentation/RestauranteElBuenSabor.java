@@ -1,5 +1,7 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.presentation;
 
+import com.mycompany.restauranteelbuensabor.config.Constantes;
+import com.mycompany.restauranteelbuensabor.infrastructure.Imprimir;
 import java.util.Scanner;
 
 public class RestauranteElBuenSabor {

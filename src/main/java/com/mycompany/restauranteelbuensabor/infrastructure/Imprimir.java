@@ -1,4 +1,9 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.infrastructure;
+
+import com.mycompany.restauranteelbuensabor.config.Constantes;
+import com.mycompany.restauranteelbuensabor.domain.model.ItemPedido;
+import com.mycompany.restauranteelbuensabor.domain.model.Pedido;
+import com.mycompany.restauranteelbuensabor.service.Factura;
 
 public class Imprimir {
 

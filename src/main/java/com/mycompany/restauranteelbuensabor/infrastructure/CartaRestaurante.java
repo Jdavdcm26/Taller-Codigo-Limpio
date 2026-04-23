@@ -1,5 +1,7 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.infrastructure;
 
+import com.mycompany.restauranteelbuensabor.config.Constantes;
+import com.mycompany.restauranteelbuensabor.domain.model.Producto;
 import java.util.ArrayList;
 import java.util.List;
 

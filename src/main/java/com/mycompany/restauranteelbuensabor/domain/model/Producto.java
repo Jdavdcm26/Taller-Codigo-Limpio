@@ -1,4 +1,4 @@
-package com.mycompany.restauranteelbuensabor;
+package com.mycompany.restauranteelbuensabor.domain.model;
 
 public class Producto {
     private final String nombre;
