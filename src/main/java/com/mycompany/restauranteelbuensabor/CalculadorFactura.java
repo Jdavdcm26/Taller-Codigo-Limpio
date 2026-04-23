@@ -3,35 +3,31 @@ package com.mycompany.restauranteelbuensabor;
 public class CalculadorFactura {
     public static double calcularTotalFactura() {
         double subtotal = Utilidades.calcularSubtotalPedido();
-        int contadorItems = Utilidades.contarItemsPedido();
-        double montoIVA = 0;
-        double total = 0;
-        double subtotalConDescuento = 0;
-        if (contadorItems > Constantes.MIN_ITEMS_DESCUENTO) {
-            if (subtotal > 0) {
-                subtotalConDescuento = subtotal - (subtotal * Constantes.TASA_DESCUENTO);
-                if (subtotalConDescuento > Constantes.UMBRAL_PROPINA) {
-                    montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
-                    total = subtotalConDescuento + montoIVA;
-                    total = total + (total * Constantes.TASA_PROPINA);
-                } else {
-                    montoIVA = subtotalConDescuento * Constantes.TASA_IVA;
-                    total = subtotalConDescuento + montoIVA;
-                }
-            }
-        } else {
-            if (subtotal > Constantes.UMBRAL_PROPINA) {
-                montoIVA = subtotal * Constantes.TASA_IVA;
-                total = subtotal + montoIVA;
-                total = total + (total * Constantes.TASA_PROPINA);
-            } else {
-                montoIVA = subtotal * Constantes.TASA_IVA;
-                total = subtotal + montoIVA;
-            }
-        }
+        int cantidadItems = Utilidades.contarItemsPedido();
+        double base = calcularSubtotalConDescuento(subtotal, cantidadItems);
+        double conIVA = calcularIVA(base);
+        double total = calcularPropina(conIVA, base);
         Datos.estadoMesa = 1;
         Datos.totalActual = total;
         return total;
+    }
+
+    public static double calcularSubtotalConDescuento(double subtotal, int cantidadItems) {
+        if (cantidadItems > Constantes.MIN_ITEMS_DESCUENTO) {
+            return subtotal - (subtotal * Constantes.TASA_DESCUENTO);
+        }
+        return subtotal;
+    }
+
+    public static double calcularIVA(double base) {
+        return base * Constantes.TASA_IVA;
+    }
+
+    public static double calcularPropina(double totalConIVA, double base) {
+        if (base > Constantes.UMBRAL_PROPINA) {
+            return totalConIVA + (totalConIVA * Constantes.TASA_PROPINA);
+        }
+        return totalConIVA;
     }
 
     public static double procesar(double precio, double cantidad, double descuento, double iva, double porcentajePropina, int numeroItems, boolean aplicarPropina) {
